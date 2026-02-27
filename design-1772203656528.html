@@ -1,0 +1,426 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LastSecond - Your Journey, Masterfully Guided.</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #1a202c; /* Dark text for light theme */
+        }
+        .text-accent-blue {
+            color: #2a6fdb; /* Deep Blue Accent */
+        }
+        .bg-accent-blue {
+            background-color: #2a6fdb; /* Deep Blue Accent */
+        }
+        .border-accent-blue {
+            border-color: #2a6fdb; /* Deep Blue Accent */
+        }
+        .hover\:bg-accent-blue:hover {
+            background-color: #2a6fdb; /* Deep Blue Accent */
+        }
+        .hover\:text-accent-blue:hover {
+            color: #2a6fdb; /* Deep Blue Accent */
+        }
+        .focus\:ring-accent-blue:focus {
+            --tw-ring-color: #2a6fdb; /* Deep Blue Accent */
+        }
+        /* Custom scrollbar for a premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+
+    <!-- AOS (Animation On Scroll) CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900 leading-relaxed antialiased">
+
+    <!-- Floating Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 backdrop-blur-sm shadow-sm py-4 px-6 md:px-12 lg:px-24 flex justify-between items-center transition-all duration-300">
+        <!-- Logo -->
+        <a href="#" class="flex items-center space-x-2">
+            <svg class="w-8 h-8 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            <span class="text-xl font-bold text-gray-800">LastSecond</span>
+        </a>
+
+        <!-- Navigation Links (Hidden on mobile, shown on desktop) -->
+        <div class="hidden md:flex space-x-8 font-medium">
+            <a href="#hero" class="text-gray-600 hover:text-accent-blue transition-colors duration-200">Home</a>
+            <a href="#value-prop" class="text-gray-600 hover:text-accent-blue transition-colors duration-200">Services</a>
+            <a href="#portfolio" class="text-gray-600 hover:text-accent-blue transition-colors duration-200">Destinations</a>
+            <a href="#testimonials" class="text-gray-600 hover:text-accent-blue transition-colors duration-200">Reviews</a>
+        </div>
+
+        <!-- CTA Button -->
+        <a href="#final-cta" class="hidden md:block bg-accent-blue text-white px-6 py-2 rounded-full shadow-md hover:bg-blue-800 transition-all duration-300 font-medium">
+            Book Now
+        </a>
+
+        <!-- Mobile Menu Toggle (Hamburger Icon) -->
+        <button class="md:hidden p-2 text-gray-600 hover:text-accent-blue focus:outline-none" aria-label="Toggle menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay (Initially hidden) -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white bg-opacity-95 z-40 hidden md:hidden flex-col items-center justify-center space-y-8 text-xl font-medium transition-opacity duration-300 ease-in-out opacity-0">
+        <button id="close-mobile-menu" class="absolute top-6 right-6 p-2 text-gray-600 hover:text-accent-blue focus:outline-none" aria-label="Close menu">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <a href="#hero" class="text-gray-800 hover:text-accent-blue transition-colors duration-200" onclick="hideMobileMenu()">Home</a>
+        <a href="#value-prop" class="text-gray-800 hover:text-accent-blue transition-colors duration-200" onclick="hideMobileMenu()">Services</a>
+        <a href="#portfolio" class="text-gray-800 hover:text-accent-blue transition-colors duration-200" onclick="hideMobileMenu()">Destinations</a>
+        <a href="#testimonials" class="text-gray-800 hover:text-accent-blue transition-colors duration-200" onclick="hideMobileMenu()">Reviews</a>
+        <a href="#final-cta" class="bg-accent-blue text-white px-8 py-3 rounded-full shadow-lg hover:bg-blue-800 transition-all duration-300 font-semibold" onclick="hideMobileMenu()">
+            Book Now
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden bg-white pt-24 pb-12 sm:pb-24">
+        <!-- Three.js Canvas for subtle background particles -->
+        <canvas id="threejs-canvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none"></canvas>
+
+        <div class="relative z-10 max-w-4xl px-6 sm:px-8 lg:px-12" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-gray-900">
+                Your Journey, <span class="text-accent-blue">Masterfully Guided.</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+                LastSecond empowers you with transparent reviews, expert insights, and seamless booking experiences to ensure every journey is perfectly planned and truly memorable. Discover the world with confidence.
+            </p>
+            <a href="#final-cta" class="inline-block bg-accent-blue text-white px-10 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-blue-800 transform hover:scale-105 transition-all duration-300">
+                Explore Destinations
+            </a>
+        </div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section id="value-prop" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold mb-4 text-gray-900" data-aos="fade-up">Why Choose LastSecond?</h2>
+            <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                We bridge the gap between dream and reality, offering unparalleled support for every traveler.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-accent-blue mb-6">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.329 1.176l1.519 4.674c.3.921-.755 1.688-1.539 1.175l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.784.513-1.838-.254-1.539-1.175l1.519-4.674a1 1 0 00-.329-1.176l-3.976-2.888c-.784-.57-.382-1.81.588-1.81h4.915a1 1 0 00.95-.69l1.519-4.674z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Authentic Reviews</h3>
+                    <p class="text-gray-600">Access a wealth of unfiltered experiences from fellow travelers, helping you make informed decisions every step of the way.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="450">
+                    <div class="text-accent-blue mb-6">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2zm3-13h.01M16 16h.01"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Seamless Planning</h3>
+                    <p class="text-gray-600">From comprehensive destination guides to effortless booking, we streamline your travel preparations so you can focus on the adventure.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="600">
+                    <div class="text-accent-blue mb-6">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM12 14c-1.463 0-2.872.27-4.13.844M18.784 14C20.07 14.467 21 15.626 21 17v2h-3.376M11 14H3v2a2 2 0 002 2h8c.023-.01.058-.024.099-.045L12 14z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Community & Trust</h3>
+                    <p class="text-gray-600">Join a thriving community committed to sharing accurate information and honest insights, fostering trust in every recommendation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio/Showcase Section -->
+    <section id="portfolio" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold mb-4 text-gray-900" data-aos="fade-up">Curated Travel Experiences</h2>
+            <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Explore a world of possibilities, from bustling cityscapes to serene natural retreats.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://via.placeholder.com/600x400/F0F8FF/2a6fdb?text=Historic+Tehran" alt="Historic Tehran" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white text-left">
+                        <h3 class="text-2xl font-semibold mb-2">Historic Tehran</h3>
+                        <p class="text-sm opacity-90">Discover ancient wonders and vibrant culture.</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="450">
+                    <img src="https://via.placeholder.com/600x400/F0F8FF/2a6fdb?text=Coastal+Adventures" alt="Coastal Adventures" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white text-left">
+                        <h3 class="text-2xl font-semibold mb-2">Coastal Adventures</h3>
+                        <p class="text-sm opacity-90">Breathtaking shores and aquatic experiences.</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="600">
+                    <img src="https://via.placeholder.com/600x400/F0F8FF/2a6fdb?text=Mountain+Retreats" alt="Mountain Retreats" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white text-left">
+                        <h3 class="text-2xl font-semibold mb-2">Mountain Retreats</h3>
+                        <p class="text-sm opacity-90">Escape to the tranquility of high peaks.</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://via.placeholder.com/600x400/F0F8FF/2a6fdb?text=Vibrant+Cityscapes" alt="Vibrant Cityscapes" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white text-left">
+                        <h3 class="text-2xl font-semibold mb-2">Vibrant Cityscapes</h3>
+                        <p class="text-sm opacity-90">Immerse yourself in urban energy and innovation.</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 5 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="450">
+                    <img src="https://via.placeholder.com/600x400/F0F8FF/2a6fdb?text=Cultural+Immersion" alt="Cultural Immersion" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white text-left">
+                        <h3 class="text-2xl font-semibold mb-2">Cultural Immersion</h3>
+                        <p class="text-sm opacity-90">Deep dives into local traditions and heritage.</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 6 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="600">
+                    <img src="https://via.placeholder.com/600x400/F0F8FF/2a6fdb?text=Desert+Oasis" alt="Desert Oasis" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white text-left">
+                        <h3 class="text-2xl font-semibold mb-2">Desert Oasis</h3>
+                        <p class="text-sm opacity-90">Experience the serene beauty of the wilderness.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold mb-4 text-gray-900" data-aos="fade-up">What Our Travelers Say</h2>
+            <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Hear directly from our community about their unforgettable experiences.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-md text-left" data-aos="fade-right" data-aos-delay="300">
+                    <p class="text-gray-700 text-lg mb-6 leading-relaxed italic">
+                        "LastSecond made finding the perfect hotel effortless. The reviews were spot-on, and the location insights invaluable for my business trip. The free late check-out was a lifesaver!"
+                    </p>
+                    <div class="font-semibold text-accent-blue">- A Satisfied Business Traveler</div>
+                    <p class="text-gray-500 text-sm">Visited Tehran, September</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-md text-left" data-aos="fade-left" data-aos-delay="450">
+                    <p class="text-gray-700 text-lg mb-6 leading-relaxed italic">
+                        "I've used LastSecond for two music festivals, and their comprehensive information and easy access to transport options were exceptional. The dining hall was great!"
+                    </p>
+                    <div class="font-semibold text-accent-blue">- An Arts Enthusiast</div>
+                    <p class="text-gray-500 text-sm">Stayed for Music Festivals, 2013-2014</p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-md text-left" data-aos="fade-right" data-aos-delay="600">
+                    <p class="text-gray-700 text-lg mb-6 leading-relaxed italic">
+                        "What sets LastSecond apart is their commitment to transparency. They don't shy away from real experiences, good or bad, which builds immense trust. It helped me choose wisely!"
+                    </p>
+                    <div class="font-semibold text-accent-blue">- An Empowered Planner</div>
+                    <p class="text-gray-500 text-sm">Traveler (Review based on platform's ethos)</p>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="bg-white p-8 rounded-lg shadow-md text-left" data-aos="fade-left" data-aos-delay="750">
+                    <p class="text-gray-700 text-lg mb-6 leading-relaxed italic">
+                        "Booking through LastSecond was seamless. Their team confirmed the best price quickly, and the process was so straightforward. Definitely my go-to for future trips."
+                    </p>
+                    <div class="font-semibold text-accent-blue">- A Frequent Explorer</div>
+                    <p class="text-gray-500 text-sm">Recent Booking</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call to Action Section -->
+    <section id="final-cta" class="py-20 md:py-32 bg-accent-blue text-white text-center">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8" data-aos="zoom-in" data-aos-duration="1000">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
+                Ready for Your Next Unforgettable Adventure?
+            </h2>
+            <p class="text-lg sm:text-xl opacity-90 mb-10 max-w-2xl mx-auto">
+                Join thousands of satisfied travelers who trust LastSecond for their journeys. Let us help you plan your perfect escape.
+            </p>
+            <a href="#" class="inline-block bg-white text-accent-blue px-12 py-5 rounded-full text-xl font-bold shadow-2xl hover:bg-gray-200 transform hover:scale-105 transition-all duration-300">
+                Plan My Trip Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Minimalist Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-10 px-6 md:px-12 lg:px-24 text-center">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <p class="text-sm">&copy; 2024 LastSecond. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-accent-blue transition-colors duration-200 text-sm">Privacy Policy</a>
+                    <a href="#" class="hover:text-accent-blue transition-colors duration-200 text-sm">Terms of Service</a>
+                    <a href="#" class="hover:text-accent-blue transition-colors duration-200 text-sm">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Three.js CDN -->
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three@0.126.0/build/three.module.js';
+
+        const canvas = document.getElementById('threejs-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        camera.position.z = 5;
+
+        // Particle System
+        const particleCount = 2000;
+        const particles = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const velocities = new Float32Array(particleCount * 3); // For gentle drift
+
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 10; // x
+            positions[i + 1] = (Math.random() - 0.5) * 10; // y
+            positions[i + 2] = (Math.random() - 0.5) * 10; // z
+
+            velocities[i] = (Math.random() - 0.5) * 0.0005; // Random drift velocity
+            velocities[i + 1] = (Math.random() - 0.5) * 0.0005;
+            velocities[i + 2] = (Math.random() - 0.5) * 0.0005;
+        }
+
+        particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particleMaterial = new THREE.PointsMaterial({
+            color: 0xcccccc, // Light grey for subtle contrast on white
+            size: 0.02, // Very small particles
+            blending: THREE.AdditiveBlending, // Smooth blending
+            transparent: true,
+            opacity: 0.7,
+            depthWrite: false, // Prevents particles from occluding each other weirdly
+        });
+
+        const particleMesh = new THREE.Points(particles, particleMaterial);
+        scene.add(particleMesh);
+
+        // Mouse interaction
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Gentle particle drift
+            const positions = particleMesh.geometry.attributes.position.array;
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                positions[i] += velocities[i];
+                positions[i + 1] += velocities[i + 1];
+                positions[i + 2] += velocities[i + 2];
+
+                // Wrap particles around if they go too far
+                if (positions[i] > 5 || positions[i] < -5) velocities[i] *= -1;
+                if (positions[i + 1] > 5 || positions[i + 1] < -5) velocities[i + 1] *= -1;
+                if (positions[i + 2] > 5 || positions[i + 2] < -5) velocities[i + 2] *= -1;
+            }
+            particleMesh.geometry.attributes.position.needsUpdate = true;
+
+            // Subtle camera movement based on mouse
+            camera.position.x += (mouseX * 0.1 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 0.1 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Handle window resizing
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+
+    <!-- AOS Initialization -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-quad',
+            once: true, // Animations should only happen once
+            mirror: false, // Elements disappear as you scroll past them
+        });
+
+        // Mobile Menu Logic
+        const mobileMenuButton = document.querySelector('nav button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+
+        function showMobileMenu() {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.add('opacity-100');
+            }, 10); // Small delay to allow display property to apply
+        }
+
+        function hideMobileMenu() {
+            mobileMenu.classList.remove('opacity-100');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300); // Match opacity transition duration
+        }
+
+        mobileMenuButton.addEventListener('click', showMobileMenu);
+        closeMobileMenuButton.addEventListener('click', hideMobileMenu);
+    </script>
+</body>
+</html>
+```
