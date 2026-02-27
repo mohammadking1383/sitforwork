@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بهترین رستوران های تهران - سنتی و لوکس | قیمت منو و آدرس</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.158.0/three.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll due to 3D */
+            background-color: #0d0d1a; /* Dark background */
+        }
+        #three-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.6; /* Adjust opacity to make content readable */
+        }
+        .content-overlay {
+            position: relative;
+            z-index: 1;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Three.js Background Canvas -->
+    <canvas id="three-bg"></canvas>
+
+    <!-- Content Overlay -->
+    <div class="content-overlay min-h-screen flex flex-col">
+
+        <!-- Header -->
+        <header class="relative py-8 md:py-16 text-center">
+            <div class="container mx-auto px-4">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 gradient-text leading-tight">
+                    بهترین رستوران های تهران
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8">
+                    سنتی و لوکس | قیمت منو و آدرس
+                </p>
+                <p class="max-w-3xl mx-auto text-lg text-gray-400 mb-10">
+                    از مهمترین مشکلاتی که اکثر افراد در زمان صرف یک وعده غذایی ناهار یا شام در بیرون از خانه با آن مواجه می شوند، انتخاب رستوران مناسبی است که علاوه بر محیط خوب، دارای غذاهای باکیفیت و مناسبی هم باشد. در شهر تهران، رستوران های بسیاری اعم از سنتی، مدرن و... وجود دارد که پیدا کردن رستوران مناسب را برای افراد سخت می کند. به همین دلیل تصمیم گرفتیم تا بهترین رستوران های تهران را از جهات مختلف بررسی کنیم.
+                </p>
+                <a href="#featured-restaurants" class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                    جستجوی رستوران ایده‌آل
+                </a>
+            </div>
+        </header>
+
+        <!-- Navigation - Floating/Sticky -->
+        <nav class="sticky top-0 z-20 bg-gray-900 bg-opacity-70 backdrop-filter backdrop-blur-md py-3 shadow-lg hidden md:block">
+            <div class="container mx-auto px-4 flex justify-center space-x-6 space-x-reverse text-lg">
+                <a href="#luxury" class="text-gray-300 hover:text-purple-400 transition duration-200">لوکس</a>
+                <a href="#traditional" class="text-gray-300 hover:text-purple-400 transition duration-200">سنتی</a>
+                <a href="#budget" class="text-gray-300 hover:text-purple-400 transition duration-200">قیمت مناسب</a>
+                <a href="#garden" class="text-gray-300 hover:text-purple-400 transition duration-200">باغ رستوران</a>
+                <a href="#hotel" class="text-gray-300 hover:text-purple-400 transition duration-200">هتل رستوران</a>
+                <a href="#vegan" class="text-gray-300 hover:text-purple-400 transition duration-200">گیاهی</a>
+                <a href="#live-music" class="text-gray-300 hover:text-purple-400 transition duration-200">موسیقی زنده</a>
+                <a href="#regions" class="text-gray-300 hover:text-purple-400 transition duration-200">بر اساس منطقه</a>
+            </div>
+        </nav>
+
+        <!-- Main Content Sections -->
+        <main class="flex-grow container mx-auto px-4 py-12">
+
+            <!-- Featured Restaurants Introduction -->
+            <section id="featured-restaurants" class="mb-16 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold gradient-text mb-6">با بهترین رستوران های تهران آشنا شوید.</h2>
+                <p class="text-lg text-gray-400 max-w-4xl mx-auto">
+                    در ادامه فهرستی جامع از برترین رستوران‌های تهران را بر اساس سبک، قیمت، امکانات و موقعیت جغرافیایی برای شما آماده کرده‌ایم تا به راحتی انتخاب کنید.
+                </p>
+            </section>
+
+            <!-- Luxury Restaurants Section -->
+            <section id="luxury" class="mb-20">
+                <h3 class="text-3xl md:text-4xl font-bold mb-8 text-purple-400 text-center">لیست رستوران های لاکچری تهران</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Divan Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-pink-400">رستوران دیوان</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            از لوکس ترین رستوران های تهران در محله فرشته، محیطی مناسب برای مراسمات خاص و جلسات کاری با انواع غذاهای ایرانی و فرنگی.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، محله فرشته، خیابان شهید فیاضی، مجتمع سام سنتر، طبقه 8</p>
+                            <p><strong>ساعت کاری:</strong> 12:30 ظهر تا 11 شب</p>
+                        </div>
+                    </div>
+                    <!-- Milad Tower Revolving Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-pink-400">رستوران گردان برج میلاد</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            یکی از معروف ترین و بزرگترین رستوران های گردان جهان با چشم انداز بی نظیر 276 متری از شهر تهران.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، برج میلاد، طبقه ششم</p>
+                            <p><strong>ساعت کاری:</strong> صبحانه 7:30-10:30، ناهار 12:30-16، شام 20-24</p>
+                        </div>
+                    </div>
+                    <!-- Monsoon Lounge -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-pink-400">مانسون لانژ</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            یکی از محبوب ترین رستوران های لوکس تهران در خیابان جردن با تنوع غذایی بالا شامل غذاهای دریایی، آسیایی و سوشی.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، خیابان جردن، نبش خیابان گلدان، شماره ۲</p>
+                            <p><strong>ساعت کاری:</strong> 12 ظهر تا 12 شب</p>
+                        </div>
+                    </div>
+                    <!-- Bistango Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-pink-400">رستوران بیستانگو هتل رامتین</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            تجربه شبی فراموش نشدنی در یک رستوران مدرن و شیک با انواع غذاهای ایرانی، بین المللی و گیاهی. شیشلیک آن بسیار معروف است.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، خیابان ولیعصر، 500 متری جنوب پارک ساعی، طبقه پایین هتل رامتین</p>
+                            <p><strong>ساعت کاری:</strong> ناهار 12-15، شام 19-23</p>
+                        </div>
+                    </div>
+                     <!-- Khaghan International Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-pink-400">رستوران بین‌المللی خاقان</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            دکوراسیون فوق العاده و کیفیت بالای غذاهای ایرانی، دریایی و فرنگی. کینگ لابستر و ماهی هامور از غذاهای پرطرفدار هستند.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، خیابان آفریقا، بلوار گلستان، بلوار گیتی، چهارراه دوما، شماره 2</p>
+                            <p><strong>ساعت کاری:</strong> 11-16 و 19-24</p>
+                        </div>
+                    </div>
+                    <!-- Esfandiar Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-pink-400">رستوران اسفندیار</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            یکی از پرطرفدارترین رستوران‌های تهران با دو طبقه و سه سالن مجزا (کلاسیک، سنتی، دیپلمات) و موسیقی زنده.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، خیابان ولیعصر، تقاطع نیایش، بلوار اسفندیار، شماره 30</p>
+                            <p><strong>ساعت کاری:</strong> 11-16 و 19-24</p>
+                        </div>
+                    </div>
+                    <!-- Tamasha Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-pink-400">رستوران تماشا</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            رستورانی لوکس و مدرن در مجتمع تجاری میلاد نور، با منوی گسترده از غذاهای سنتی، فرنگی و فست فود.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، شهرک غرب، بلوار فرحزادی، مجتمع میلاد نور، طبقه ششم</p>
+                            <p><strong>ساعت کاری:</strong> 11-16 و 19-24</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Budget-Friendly Restaurants Section -->
+            <section id="budget" class="mb-20">
+                <h3 class="text-3xl md:text-4xl font-bold mb-8 text-green-400 text-center">بهترین رستوران های تهران با قیمت مناسب</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Sharaf El-Eslami Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-teal-300">رستوران شرف الاسلامی</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            رستورانی سنتی و قدیمی در بازار تاریخی تهران با غذاهای ایرانی باکیفیت و قیمت مناسب.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، بازار، به سمت مسجد شاه، داخل حیاط مسجد شاه</p>
+                            <p><strong>ساعت کاری:</strong> 11 ظهر تا 17</p>
+                        </div>
+                    </div>
+                    <!-- Bellamonica Italian Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-teal-300">رستوران ایتالیایی بلامونیکا</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            رستورانی خوب با طراحی داخلی هنرمندانه و انواع پاستا، پیتزا و لازانیا با قیمت مناسب.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، خیابان خالد اسلامبولی (وزرا)، نبش کوچه یازدهم، پلاک ۳۲</p>
+                            <p><strong>ساعت کاری:</strong> 12-16 و 19-23</p>
+                        </div>
+                    </div>
+                    <!-- Qajari Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-teal-300">رستوران قجری</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            قدیمی‌ترین رستوران تهران با انواع غذاهای سنتی و ایرانی در مرکز شهر و قیمت مناسب.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، خیابان کرم خان زند، ابتدای ایرانشهر، پلاک 280</p>
+                            <p><strong>ساعت کاری:</strong> 11 صبح تا 4 عصر</p>
+                        </div>
+                    </div>
+                    <!-- Flipper Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-teal-300">رستوران فیلیپر</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            رستورانی تازه تاسیس با محیطی مدرن و غذاهای سنتی (کباب کوبیده، کباب ترش) با قیمت مناسب.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، فلسطین شمالی، بین كوچه ششم و هشتم، پلاک ۴۸۲</p>
+                            <p><strong>ساعت کاری:</strong> ناهار 12-16:30، شام 19:30-23</p>
+                        </div>
+                    </div>
+                    <!-- Canary Hotel Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-teal-300">رستوران هتل قناری سمیه</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            مکانی مناسب برای دورهمی‌ها با قدمت زیاد، کیفیت غذایی بالا و قیمت مناسب. خورش قیمه بادمجان پیشنهاد می‌شود.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، خیابان سمیه، بین مفتح و فرصت، شماره 168</p>
+                            <p><strong>ساعت کاری:</strong> 11 صبح تا 4 عصر و 7 تا 12 شب</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Traditional Restaurants Section -->
+            <section id="traditional" class="mb-20">
+                <h3 class="text-3xl md:text-4xl font-bold mb-8 text-yellow-400 text-center">10 تا از بهترین رستوران های سنتی تهران</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Aali Qapu Traditional Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-orange-300">رستوران سنتی عالی قاپو</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            واقع در ونک، با محیط کاملاً سنتی، دکوراسیون دیدنی، موسیقی زنده و غذاهای با کیفیت (گران).
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، ونک، خیابان گاندی جنوبی، بین کوچه های 23 و 25، پلاک 55</p>
+                            <p><strong>ساعت کاری:</strong> 11 صبح تا 15:30 و 19 تا 23:30</p>
+                        </div>
+                    </div>
+                    <!-- Shahrbanoo Traditional Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-orange-300">رستوران سنتی شهربانو</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            در شهرک غرب، با دو بخش سفره خانه و رستوران مجزا. منوی متنوع غذاهای سنتی، ایرانی، دریایی و فرنگی.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، شهرک غرب، بلوار دادمان، بلوار درختی، مجتمع خلیج فارس</p>
+                            <p><strong>ساعت کاری:</strong> 8 صبح تا 11 شب</p>
+                        </div>
+                    </div>
+                     <!-- Bagh Ferdows Traditional Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-orange-300">رستوران سنتی باغ فردوس</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            یکی از باغ رستوران های تهران با موسیقی زنده در ستارخان، محیطی خاص همچون یک موزه با وسایل قدیمی.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، ستارخان، روبروی باقرخان، پلاک 170</p>
+                            <p><strong>ساعت کاری:</strong> 13-16 و 19-23</p>
+                        </div>
+                    </div>
+                    <!-- Bagh Saba Traditional Teahouse -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-orange-300">سفره‌خانه سنتی باغ صبا</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            فرار از دنیای مدرن در خیابان شریعتی با دکوراسیون سنتی, موسیقی زنده، عکاسخانه و غذاهای ایرانی با کیفیت بالا (گران).
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، شریعتی، روبروی ملک</p>
+                            <p><strong>ساعت کاری:</strong> 11 صبح تا 12 شب</p>
+                        </div>
+                    </div>
+                    <!-- Shab Haye Sarv Traditional Teahouse -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-orange-300">سفره خانه سنتی شب های سرو</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            در سعادت آباد با ارائه انواع غذاهای سالم و با کیفیت ایرانی، سنتی، فرنگی و دریایی و موسیقی زنده.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، سعادت آباد، ضلع شمال شرقی چهارراه سرو، پلاک ۷۹</p>
+                            <p><strong>ساعت کاری:</strong> 11:30 صبح تا 12 شب</p>
+                        </div>
+                    </div>
+                     <!-- Shabestan Traditional Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-orange-300">رستوران سنتی شبستان</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            بهترین رستوران سنتی در مرکز شهر با اجرای موسیقی زنده و انواع غذاهای ایرانی مانند کباب، استیک و دیزی.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، منطقه 6، محله ولیعصر، خیابان استادنجات الهی (ویلا)، پلاک 90</p>
+                            <p><strong>ساعت کاری:</strong> 12 ظهر تا 12 شب</p>
+                        </div>
+                    </div>
+                    <!-- Daloon Deraz Traditional Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-orange-300">رستوران سنتی دالون دراز</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            قدیمی‌ترین رستوران‌های تهران در امیرآباد با موسیقی زنده پاپ و سنتی و دکوراسیونی برگرفته از حمام‌های کاشان.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، خیابان کارگر شمالی، امیرآباد، روبروی بیمارستان قلب، پلاک ۴۱۷</p>
+                            <p><strong>ساعت کاری:</strong> 11 صبح تا 12 شب</p>
+                        </div>
+                    </div>
+                    <!-- Sayman Traditional Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-orange-300">رستوران سنتی سایمان</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            از بهترین رستوران‌های سنتی غرب تهران با ظرفیت 100 نفر، غذاهای ایرانی، فرنگی و ایتالیایی، مناسب تولد و سالگرد ازدواج.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، صادقیه، ستارخان، خیابان خسرو شمالی، نبش خیابان سازمان آب</p>
+                            <p><strong>ساعت کاری:</strong> 12 ظهر تا 11 شب</p>
+                        </div>
+                    </div>
+                    <!-- Gilar Traditional Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-orange-300">رستوران سنتی گیلار</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            در نیاوران با غذاهای پرطرفدار گیلانی، بخش رستوران و کافی شاپ، امکان سفارش آنلاین و موسیقی زنده شبانه.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، نیاوران، بعد از سه راه یاسر، نرسیده به چهار راه مژده</p>
+                            <p><strong>ساعت کاری:</strong> 12 ظهر تا 23:30</p>
+                        </div>
+                    </div>
+                    <!-- Houz Khooneh Traditional Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-orange-300">رستوران سنتی حوض خونه</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            از رستوران‌های قدیمی تهران با قدمت بیش از 40 سال در ولیعصر، با غذاهای محلی و ایرانی سرو شده در ظروف مسی و موسیقی زنده.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، خیابان ولیعصر، انتهای ضلع شمالی پارک ساعی، روبروی خیابان ساعی</p>
+                            <p><strong>ساعت کاری:</strong> 11:30 صبح تا 12 شب</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Garden Restaurants Section -->
+            <section id="garden" class="mb-20">
+                <h3 class="text-3xl md:text-4xl font-bold mb-8 text-green-500 text-center">بهترین باغ رستوران های تهران</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Bagh Gilas Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-lime-300">رستوران باغ گیلاس</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            مکانی دنج و لوکس در ولنجک برای صرف ناهار و شام در هوایی دل انگیز با غذاهای با کیفیت.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، ولنجک، بلوار دانشجو، بالاتر از میدان یاسمن، درب وسط</p>
+                            <p><strong>ساعت کاری:</strong> 12-14 و 19-24</p>
+                        </div>
+                    </div>
+                    <!-- Kubaba Lebanese Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-lime-300">رستوران لبنانی کوبابا</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            باغ رستورانی لاکچری با طعم اصیل غذاهای عربی، لبنانی، ترکی و ایرانی، معروف‌ترین شعبه در جردن با موسیقی زنده.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، جردن، خیابان گلخانه، پلاک 257، طبقه اول</p>
+                            <p><strong>ساعت کاری:</strong> 12-15:30 و 19:30-23 (پنجشنبه/جمعه صبحانه 8-11)</p>
+                        </div>
+                    </div>
+                    <!-- Ban Co Italian Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-lime-300">بان کو، رستوران ایتالیایی</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            رستورانی ایتالیایی در تهرانپارس با دکوراسیونی خاص، ویو خوب و غذاهای با کیفیت (پیتزا، پاستا، استیک).
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، فلکه دوم تهران ‌پارس، ابتدای خیابان فرجام، نبش خیابان آهنی آمینه</p>
+                            <p><strong>ساعت کاری:</strong> 11 صبح تا 12 شب</p>
+                        </div>
+                    </div>
+                    <!-- Qasr Moj Mirdamad Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-lime-300">رستوران قصر موج میرداماد</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            باغ رستورانی با دکوراسیون سنتی و آلاچیق‌های خاص، با دو بخش فضای باز و سرپوشیده و انواع غذاهای ایرانی و فرنگی.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، بلوار میرداماد، خیابان شمس تبریزی جنوبی، کوی مریم</p>
+                            <p><strong>ساعت کاری:</strong> 11 صبح تا 11 شب</p>
+                        </div>
+                    </div>
+                    <!-- Bagh Noor Farahzad Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-lime-300">رستوران باغ نور فرحزاد</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            رستورانی زیبا در فرحزاد با انواع غذاهای ایرانی (کباب کوبیده و لقمه نگینی معروف)، امکان استفاده از قلیان و موزیک زنده.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، منطقه فرحزاد، کوچه آبشار، بن بست نور</p>
+                            <p><strong>ساعت کاری:</strong> 9 صبح تا 12 شب</p>
+                        </div>
+                    </div>
+                    <!-- Bagh Behesht Fasham Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-lime-300">رستوران باغ بهشت فشم</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            بزرگترین باغ رستوران تهران در 6 طبقه در لواسان با معماری منحصر به فرد و منوی متنوع از غذاهای ایرانی، فرنگی و دریایی.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، ابتدای جاده فشم، زردبند، سمت چپ</p>
+                            <p><strong>ساعت کاری:</strong> 11 صبح تا 12 شب</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Hotel Restaurants Section -->
+            <section id="hotel" class="mb-20">
+                <h3 class="text-3xl md:text-4xl font-bold mb-8 text-blue-400 text-center">بهترین هتل رستوران های تهران</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Sky Lounge Espinas Palace Hotel -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-sky-300">رستوران اسکای لانژ هتل اسپیناس</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            در یکی از لوکس‌ترین هتل‌ها، با انواع غذاهای ایرانی، بین‌المللی و آسیایی، دارای فضای باز و کافه.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، سعادت آباد، بلوار پیام، میدان بهرود، خیابان ۳۳</p>
+                            <p><strong>ساعت کاری:</strong> 7 صبح تا 2 بامداد</p>
+                        </div>
+                    </div>
+                    <!-- Parsian Esteghlal Hotel Restaurants -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-sky-300">رستوران های هتل پارسیان استقلال</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            شامل رستوران‌های فصلی آبشار گیله وا، رز و مطبخ با منوی متنوع ایرانی، بین‌المللی و فست فودی، با غذاهای ترکیه‌ای. (گران)
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، بزرگراه چمران، نرسیده به چهارراه پارک وی</p>
+                            <p><strong>ساعت کاری:</strong> متفاوت برای هر رستوران</p>
+                        </div>
+                    </div>
+                     <!-- Parsian Azadi Hotel Restaurants -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-sky-300">رستوران های هتل پارسیان آزادی</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            هتل 5 ستاره لوکس با رستوران‌هایی مناسب قرارهای دوستانه، کاری و خانوادگی با انواع غذاهای سنتی، ایرانی، بین‌المللی و آسیایی.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، بزرگراه شهید چمران، تقاطع یادگار امام</p>
+                            <p><strong>ساعت کاری:</strong> 12 ظهر تا 10 شب</p>
+                        </div>
+                    </div>
+                    <!-- Dolphin Homa Hotel Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-sky-300">رستوران دلفین هتل هما</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            در نزدیکی میدان ونک، با فضای باز جذاب، آلاچیق و موسیقی زنده. منوی شامل غذاهای سنتی، ایرانی و بین‌المللی.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، خیابان ولیعصر، بالاتر از میدان ونک، خیابان شهید خدامی</p>
+                            <p><strong>ساعت کاری:</strong> 20 تا 23</p>
+                        </div>
+                    </div>
+                    <!-- Taj Mahal Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-sky-300">رستوران تاج محل</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            رستورانی متفاوت و شیک با غذاهای هندی پر ادویه، مناسب مراسمات و جشن‌ها.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، میدان ونک، بلوار ملاصدرا، خیابان شیخ بهایی جنوبی، پلاک 29</p>
+                            <p><strong>ساعت کاری:</strong> 12-16 و 19-23:30</p>
+                        </div>
+                    </div>
+                    <!-- Termeh Ferdowsi Hotel Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-sky-300">رستوران هتل فردوسی تهران (ترمه)</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            رستوران سنتی ترمه در مرکز شهر با معماری کلاسیک، ظروف قدیمی و ظرفیت 350 نفر. (غذاهای باکیفیت و گران)
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، بالاتر از میدان امام خمینی، خیابان کوشک مصری</p>
+                            <p><strong>ساعت کاری:</strong> 12-16 و 18-23 (باید از قبل رزرو شود)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Restaurants with Live Music -->
+            <section id="live-music" class="mb-20">
+                <h3 class="text-3xl md:text-4xl font-bold mb-8 text-red-400 text-center">لیست رستوران های تهران با موسیقی زنده</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Orchideh Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-rose-300">رستوران ارکیده</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            از بزرگترین رستوران‌های تهران با شعبات متعدد، شعبه سعادت آباد معروف‌تر است، مناسب مراسم و دورهمی‌ها، دارای رستوران گردان.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> سعادت آباد، میدان کاج، ابتدای خیابان علامه شمالی، نبش خیابان اقبال ملی</p>
+                        </div>
+                    </div>
+                    <!-- Barbod Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-rose-300">رستوران باربد</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            با طبخ انواع غذاهای ایرانی و سنتی، دارای فضای مخصوص قلیان، جزء رستوران‌های گران قیمت با کیفیت بالا.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، ونک، خیابان سئول، بالاتر از میدان شیخ بهائی، پلاک۵۷</p>
+                            <p><strong>ساعت کاری:</strong> 12 ظهر تا 12 شب</p>
+                        </div>
+                    </div>
+                    <!-- Lidoma Palace Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-rose-300">کاخ رستوران لیدوما</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            رستورانی لاکچری در شهرک غرب با دکوراسیون شیک، مناسب مهمانی‌های رسمی و تولد، با موسیقی زنده.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، شهرک غرب، میدان صنعت، بلوار فرحزادی، پاساژ لیدوما</p>
+                            <p><strong>ساعت کاری:</strong> 12 ظهر تا 12 شب</p>
+                        </div>
+                    </div>
+                     <!-- Ararat Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-rose-300">رستوران آرارات</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            یکی از قدیمی‌ترین رستوران‌های تهران در میرزای شیرازی، با منوی گسترده (ایرانی، دریایی، گیاهی، ایتالیایی) و موسیقی زنده. بهترین استیک تهران.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، خیابان میرزای شیرازی، بین پنجم و هفتم، پلاک ۳۳</p>
+                            <p><strong>ساعت کاری:</strong> 12-16 و 18-24</p>
+                        </div>
+                    </div>
+                    <!-- Simorgh International Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-rose-300">رستوران بین المللی سیمرغ</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            در خیابان شیرازی با منوی متنوع از غذاهای ایرانی و فرنگی و گروه موسیقی زنده.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> خیابان میرزای شیرازی، بین مطهری و بهشتی، نبش کوچه دلاویز، پلاک 248</p>
+                        </div>
+                    </div>
+                    <!-- Rizotto Restaurant Saadat Abad -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-rose-300">رستوران ریزوتو سعادت‌آباد</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            در سعادت آباد با انواع غذاهای ایرانی و ایتالیایی و موسیقی زنده شبانه برای شبی به یاد ماندنی.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران سعادت آباد، میدان کاج، کوچه سوم، پلاک 5</p>
+                            <p><strong>ساعت کاری:</strong> 11 صبح تا 12 شب</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Vegan Restaurants Section -->
+            <section id="vegan" class="mb-20">
+                <h3 class="text-3xl md:text-4xl font-bold mb-8 text-purple-300 text-center">بهترین رستوران های گیاهی تهران</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Zamin Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-fuchsia-300">رستوران زمین</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            در شهرک غرب با منوی متنوع گیاهی (پاستا، کباب، سوشی و دیزی گیاهی) و فروشگاه محصولات گیاهی.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، شهرک غرب، خیابان سیمای ایران، شهرک پردیسان</p>
+                            <p><strong>ساعت کاری:</strong> 10 صبح تا 12 شب</p>
+                        </div>
+                    </div>
+                    <!-- Ananda Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-fuchsia-300">رستوران آناندا</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            در پاسداران با منوی متنوع غذاهای گیاهی (کباب، دلمه، کوفته برنجی) و امکان سفارش آنلاین.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، پاسداران، بهستان دهم، اخیتاریه جنوبی، جنب مخابرات، پلاک 18</p>
+                            <p><strong>ساعت کاری:</strong> 12 ظهر تا 10:30 شب</p>
+                        </div>
+                    </div>
+                    <!-- Pure Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-fuchsia-300">رستوران پیور</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            در شیخ بهایی با انواع غذاهای گیاهی (وگان و غیروگان)، سوپ، سالاد، گریل، پیتزا و نوشیدنی‌های متنوع و فروشگاه.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، شیخ بهایی، برج های آ. اس. پ، واحد 35</p>
+                        </div>
+                    </div>
+                    <!-- Tilit Vegetarian Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-fuchsia-300">رستوران گیاهی تیلیت</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            از دیزی‌سراهای مشهور در سعدی شمالی، با انواع دیزی و دیزی مخصوص گیاهخواران (با سویا).
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، سعدی شمالی، روبه روی منوچهری، کوچه مصباح، پلاک 194</p>
+                            <p><strong>ساعت کاری:</strong> 12 ظهر تا 17</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Restaurants by Region Section -->
+            <section id="regions" class="mb-20">
+                <h3 class="text-3xl md:text-4xl font-bold mb-8 text-cyan-400 text-center">رستوران های معروف تهران در مناطق مهم</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="glass-card p-6 flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-2 text-sky-300">شمال تهران</h4>
+                        <ul class="text-gray-300 text-sm list-none p-0">
+                            <li>رستوران SPU (درکه)</li>
+                            <li>رستوران نایب (وزرا، الهیه)</li>
+                            <li>رستوران خونه (حقانی)</li>
+                            <li>رستوران شاندیز جردن</li>
+                            <li><a href="#" class="text-blue-400 hover:underline">بیشتر...</a></li>
+                        </ul>
+                    </div>
+                    <div class="glass-card p-6 flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-2 text-sky-300">شرق تهران</h4>
+                        <ul class="text-gray-300 text-sm list-none p-0">
+                            <li>سفره خانه سنتی عمارت (تهرانپارس)</li>
+                            <li>رستوران موبی دیک (قرنی)</li>
+                            <li>رستوران درویش (سعادت آباد)</li>
+                            <li><a href="#" class="text-blue-400 hover:underline">بیشتر...</a></li>
+                        </ul>
+                    </div>
+                    <div class="glass-card p-6 flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-2 text-sky-300">غرب تهران</h4>
+                        <ul class="text-gray-300 text-sm list-none p-0">
+                            <li>رستوران شمرون (تجریش)</li>
+                            <li>رستوران رفتاری بام لند (دریاچه چیتگر)</li>
+                            <li>رستوران پدیده شاندیز (شهرک غرب)</li>
+                            <li><a href="#" class="text-blue-400 hover:underline">بیشتر...</a></li>
+                        </ul>
+                    </div>
+                    <div class="glass-card p-6 flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-2 text-sky-300">جنوب تهران</h4>
+                        <ul class="text-gray-300 text-sm list-none p-0">
+                            <li>تیمچه اکبریان (بازار)</li>
+                            <li>رستوران مسلم (بازار بزرگ)</li>
+                            <li>کافه گل رضاییه (سی تیر)</li>
+                            <li><a href="#" class="text-blue-400 hover:underline">بیشتر...</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Most Popular/User Favorites Section -->
+            <section id="popular" class="mb-20">
+                <h3 class="text-3xl md:text-4xl font-bold mb-8 text-orange-400 text-center">بهترین رستوران های تهران از نظر مردم</h3>
+                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Senso Italian Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-amber-300">رستوران ایتالیایی سنسو</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            یکی از شلوغ‌ترین و بهترین رستوران‌های تهران از نظر مردم با تنوع غذایی بالا، کیفیت عالی و برخورد خوب کارکنان.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، بلوار فردوس شرق، رامین جنوبی، پلاک ۲۱</p>
+                            <p><strong>ساعت کاری:</strong> 12 ظهر تا 12 شب</p>
+                        </div>
+                    </div>
+                    <!-- Yas Restaurant -->
+                    <div class="glass-card p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
+                        <h4 class="text-2xl font-semibold mb-3 text-amber-300">یاس، از زیبا ترین رستوران های تهران</h4>
+                        <p class="text-gray-300 mb-4 flex-grow">
+                            در خیابان ولیعصر با غذاهای باکیفیت، دکوراسیون زیبا و قیمت مناسب. سوپ قارچ و استیک‌های تازه پیشنهاد می‌شود.
+                        </p>
+                        <div class="text-sm text-gray-400 space-y-2">
+                            <p><strong>آدرس:</strong> تهران، خیابان ولیعصر، روبروی درب اصلی پارک ملت، پلاک 2627</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Answers / FAQ Section -->
+            <section id="faq" class="mb-20 text-center max-w-3xl mx-auto">
+                <h3 class="text-3xl md:text-4xl font-bold mb-8 text-indigo-400">سوالات متداول</h3>
+                <div class="glass-card p-6 mb-6 text-right">
+                    <h4 class="text-xl font-semibold mb-2 text-indigo-300">بهترین رستوران های قیمت مناسب تهران کجا هستند؟</h4>
+                    <p class="text-gray-300">
+                        رستوران شرف الاسلامی تهران، رستوران قجری، رستوران فیلیپر و رستوران هتل قناری از معروف ترین رستوران های قیمت مناسب تهران می باشند.
+                    </p>
+                </div>
+                <div class="glass-card p-6 text-right">
+                    <h4 class="text-xl font-semibold mb-2 text-indigo-300">بهترین رستوران های لوکس تهران کجاست؟</h4>
+                    <p class="text-gray-300">
+                        رستوران دیوان، رستوران گردان برج میلاد، مانسون لانژ، رستوران بیستانگو هتل رامتین تهران، رستوران بین‌المللی خاقان تهران، رستوران اسفندیار و رستوران تماشا بهترین رستوران های لوکس تهران را تشکیل می دهند.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Final Call to Action -->
+            <section class="text-center py-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-6 gradient-text">
+                    رستوران ایده‌آل خود را پیدا کنید!
+                </h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-10">
+                    فرقی نمی‌کند به دنبال تجربه‌ای سنتی، لوکس، یا غذای گیاهی باشید، تهران بهترین‌ها را برای شما دارد.
+                </p>
+                <a href="#featured-restaurants" class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                    شروع جستجو
+                </a>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 bg-opacity-70 backdrop-filter backdrop-blur-md py-8 text-gray-400 text-sm text-center">
+            <div class="container mx-auto px-4">
+                <p class="mb-4">
+                    <a href="https://respina24.ir/mag/author/mitraazizi/" class="text-purple-400 hover:underline" target="_blank">میترا عزیزی</a> - تمامی حقوق محفوظ است.
+                </p>
+                <p class="mb-4">ایمیل رسپینا: <a href="mailto:info@respina24.com" class="text-blue-400 hover:underline">info@respina24.com</a></p>
+                <div class="flex flex-wrap justify-center space-x-4 space-x-reverse mb-4">
+                    <a href="https://respina24.ir/mag/qeytarieh-park/" class="text-gray-500 hover:text-purple-400 transition duration-200" target="_blank">پارک قیطریه تهران</a>
+                    <a href="https://respina24.ir/mag/tehran-palaces/" class="text-gray-500 hover:text-purple-400 transition duration-200" target="_blank">کاخ های تهران</a>
+                    <a href="https://respina24.ir/mag/tehran-attractions/" class="text-gray-500 hover:text-purple-400 transition duration-200" target="_blank">جاهای دیدنی تهران</a>
+                    <a href="https://respina24.ir/mag/attractions-around-tehran/" class="text-gray-500 hover:text-purple-400 transition duration-200" target="_blank">جاهای دیدنی اطراف تهران</a>
+                    <a href="https://respina24.ir/mag/tehran-balloon-ride/" class="text-gray-500 hover:text-purple-400 transition duration-200" target="_blank">بالن سواری تهران</a>
+                </div>
+                <p>&copy; 2023 Tehran Restaurants Guide. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Three.js Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('three-bg');
+            let scene, camera, renderer;
+            let particles, particleGeometry, particleMaterial;
+            let cube;
+            let mouseX = 0, mouseY = 0;
+
+            function init() {
+                // Scene
+                scene = new THREE.Scene();
+
+                // Camera
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 5;
+
+                // Renderer
+                renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(window.devicePixelRatio);
+
+                // Particles
+                particleGeometry = new THREE.BufferGeometry();
+                const particleCount = 2000;
+                const positions = new Float32Array(particleCount * 3);
+                const colors = new Float32Array(particleCount * 3);
+
+                for (let i = 0; i < particleCount; i++) {
+                    // Position
+                    positions[i * 3] = (Math.random() - 0.5) * 20;
+                    positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+                    positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+
+                    // Color (subtle purple/blue/pink glow)
+                    colors[i * 3] = Math.random() * 0.2 + 0.1; // R
+                    colors[i * 3 + 1] = Math.random() * 0.2 + 0.1; // G
+                    colors[i * 3 + 2] = Math.random() * 0.6 + 0.4; // B
+                }
+
+                particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+                particleMaterial = new THREE.PointsMaterial({
+                    size: 0.05,
+                    vertexColors: true,
+                    blending: THREE.AdditiveBlending,
+                    transparent: true,
+                    opacity: 0.8
+                });
+
+                particles = new THREE.Points(particleGeometry, particleMaterial);
+                scene.add(particles);
+
+                // Add a glowing cube for more futuristic feel
+                const cubeGeometry = new THREE.IcosahedronGeometry(1, 0); // Icosahedron looks more futuristic
+                const cubeMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x8b5cf6, // Purple color
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.3
+                });
+                cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+                scene.add(cube);
+
+                // Add an ambient light
+                const ambientLight = new THREE.AmbientLight(0x404040, 2); // soft white light
+                scene.add(ambientLight);
+
+                // Add point lights
+                const pointLight1 = new THREE.PointLight(0xec4899, 1, 100); // Pink light
+                pointLight1.position.set(5, 5, 5);
+                scene.add(pointLight1);
+
+                const pointLight2 = new THREE.PointLight(0x3b82f6, 1, 100); // Blue light
+                pointLight2.position.set(-5, -5, -5);
+                scene.add(pointLight2);
+
+                animate();
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // Animate particles
+                particles.rotation.x += 0.0005;
+                particles.rotation.y += 0.0008;
+
+                // Animate the cube
+                cube.rotation.x += 0.001;
+                cube.rotation.y += 0.001;
+
+                // Mouse interaction for camera/scene rotation
+                const targetX = mouseX * 0.001;
+                const targetY = mouseY * 0.001;
+
+                scene.rotation.y += (targetX - scene.rotation.y) * 0.05;
+                scene.rotation.x += (targetY - scene.rotation.x) * 0.05;
+
+                renderer.render(scene, camera);
+            }
+
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function onDocumentMouseMove(event) {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = - (event.clientY / window.innerHeight) * 2 + 1;
+            }
+
+            window.addEventListener('resize', onWindowResize, false);
+            document.addEventListener('mousemove', onDocumentMouseMove, false);
+
+            init();
+        });
+    </script>
+</body>
+</html>
