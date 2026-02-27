@@ -1,0 +1,442 @@
+```html
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بهترین رستوران های تهران | کشف تجربه‌های غذایی بی‌نظیر</title>
+    <!-- Google Fonts: Poppins for a premium, modern feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS (Animate On Scroll) CSS for subtle animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN - MANDATORY for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the "Chic & Modern" / "Premium Minimalism" look */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif; /* Primary font for structural elements */
+            background-color: #111; /* Dark Grey base, premium dark theme */
+            color: #E0E0E0; /* Light Grey for high readability against dark background */
+        }
+        /* Custom color definitions for Tailwind */
+        .text-accent-teal { color: #00CED1; /* Neon Teal */ }
+        .bg-accent-teal { background-color: #00CED1; /* Neon Teal */ }
+        .border-accent-teal { border-color: #00CED1; /* Neon Teal */ }
+
+        /* Hide scrollbar for a cleaner, minimalist aesthetic */
+        body::-webkit-scrollbar { display: none; }
+        body { -ms-overflow-style: none; /* IE and Edge */ scrollbar-width: none; /* Firefox */ }
+
+        /* Three.js canvas styling for the background of the Hero section */
+        #hero-3d-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Ensures it stays behind text content */
+            pointer-events: none; /* Allows mouse events to pass through to elements beneath */
+        }
+    </style>
+    <script>
+        // Tailwind CSS configuration to extend theme with custom fonts and colors
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'], // Define Poppins as the default sans-serif font
+                    },
+                    colors: {
+                        'accent-teal': '#00CED1', // Neon Teal accent color
+                        'dark-theme-bg': '#111', // Main dark background color
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-dark-theme-bg text-gray-100 antialiased overflow-x-hidden">
+
+    <!-- Floating Navbar -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-dark-theme-bg bg-opacity-90 shadow-lg backdrop-blur-sm transition-all duration-300 ease-in-out py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo - Text-based, chic and modern -->
+            <a href="#" class="text-3xl font-extrabold text-white tracking-wider">
+                <span class="text-accent-teal">تهران</span>گشت
+            </a>
+
+            <!-- Navigation Links - Desktop -->
+            <div id="nav-menu" class="hidden md:flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-reverse md:space-x-8 text-lg">
+                <a href="#hero" class="hover:text-accent-teal transition-colors duration-200 font-medium">صفحه اصلی</a>
+                <a href="#value-props" class="hover:text-accent-teal transition-colors duration-200 font-medium">خدمات</a>
+                <a href="#portfolio" class="hover:text-accent-teal transition-colors duration-200 font-medium">نمونه‌کارها</a>
+                <a href="#contact" class="hover:text-accent-teal transition-colors duration-200 font-medium">تماس با ما</a>
+                <a href="#cta-final" class="bg-accent-teal text-dark-theme-bg px-6 py-2 rounded-full font-semibold shadow-xl hover:bg-opacity-80 transition-all duration-300 ease-in-out mr-0 md:mr-0">
+                    رزرو میز
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-dark-theme-bg bg-opacity-95 z-40 hidden flex-col items-center justify-center space-y-8 text-3xl transition-opacity duration-300 ease-in-out opacity-0">
+        <button id="close-mobile-menu" class="absolute top-6 left-6 text-white focus:outline-none">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <a href="#hero" class="hover:text-accent-teal transition-colors duration-200" onclick="hideMobileMenu()">صفحه اصلی</a>
+        <a href="#value-props" class="hover:text-accent-teal transition-colors duration-200" onclick="hideMobileMenu()">خدمات</a>
+        <a href="#portfolio" class="hover:text-accent-teal transition-colors duration-200" onclick="hideMobileMenu()">نمونه‌کارها</a>
+        <a href="#contact" class="hover:text-accent-teal transition-colors duration-200" onclick="hideMobileMenu()">تماس با ما</a>
+        <a href="#cta-final" class="bg-accent-teal text-dark-theme-bg px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-opacity-80 transition-all duration-300 ease-in-out" onclick="hideMobileMenu()">
+            رزرو میز
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center text-center p-8 overflow-hidden z-10">
+        <!-- Three.js Canvas for the subtle, interactive 3D particle system -->
+        <canvas id="hero-3d-canvas"></canvas>
+
+        <div class="relative z-10 max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-white drop-shadow-lg">
+                بهترین رستوران های تهران: <span class="text-accent-teal">سفری به دنیای طعم و اصالت</span>
+            </h1>
+            <p class="text-lg md:text-xl leading-relaxed text-gray-300 mb-10">
+                از سنتی‌ترین تا لوکس‌ترین، راهنمای جامع شما برای کشف تجربه‌های غذایی بی‌نظیر در قلب پایتخت.
+            </p>
+            <a href="#cta-final" class="bg-accent-teal text-dark-theme-bg px-8 py-4 rounded-full font-bold text-xl shadow-xl hover:bg-opacity-80 transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+                شروع سفر غذایی شما
+            </a>
+        </div>
+    </section>
+
+    <!-- Value Proposition - 3 distinct cards -->
+    <section id="value-props" class="py-20 md:py-24 bg-[#181818] text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 text-white" data-aos="fade-up">
+                چرا ما را انتخاب کنید؟
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Value Card 1 -->
+                <div class="p-8 bg-gray-900 rounded-lg shadow-xl border border-gray-800 hover:border-accent-teal transition-all duration-300 ease-in-out transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-accent-teal mb-6 flex justify-center">
+                        <!-- SVG Icon for Unique Dining Experience -->
+                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">تجربه غذایی بی‌نظیر</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        کشف طعم‌های اصیل ایرانی و بین‌المللی در محیطی دلپذیر و فراموش‌نشدنی.
+                    </p>
+                </div>
+                <!-- Value Card 2 -->
+                <div class="p-8 bg-gray-900 rounded-lg shadow-xl border border-gray-800 hover:border-accent-teal transition-all duration-300 ease-in-out transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-accent-teal mb-6 flex justify-center">
+                        <!-- SVG Icon for Luxury & Traditional -->
+                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.564 23.564 0 0112 15c-3.536 0-6.703-.996-9-2.745M19 19v-5a2 2 0 00-2-2H7a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2zm-2-2H7v-3a2 2 0 012-2h6a2 2 0 012 2v3z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">لوکس و سنتی</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        از رستوران‌های فاخر تا سفره‌خانه‌های پرقدمت، هر سلیقه‌ای را پوشش می‌دهیم.
+                    </p>
+                </div>
+                <!-- Value Card 3 -->
+                <div class="p-8 bg-gray-900 rounded-lg shadow-xl border border-gray-800 hover:border-accent-teal transition-all duration-300 ease-in-out transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="600">
+                    <div class="text-accent-teal mb-6 flex justify-center">
+                        <!-- SVG Icon for Smart Choice -->
+                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">انتخاب هوشمندانه</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        راهنمای کامل برای بهترین انتخاب با توجه به قیمت، کیفیت و موقعیت مکانی.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio/Showcase - Clean grid with subtle hover effects -->
+    <section id="portfolio" class="py-20 md:py-24 bg-dark-theme-bg">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center text-white" data-aos="fade-up">
+                نمونه‌کارهای ما: <span class="text-accent-teal">مجموعه‌ای از بهترین‌ها</span>
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 (Luxury) -->
+                <div class="relative group rounded-lg overflow-hidden shadow-xl" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://via.placeholder.com/600x400/1e293b/a5f3fc?text=رستوران+دیوان" alt="رستوران دیوان" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <h3 class="text-2xl font-semibold text-white">رستوران دیوان <span class="text-accent-teal">(لوکس)</span></h3>
+                    </div>
+                </div>
+                <!-- Portfolio Item 2 (Traditional) -->
+                <div class="relative group rounded-lg overflow-hidden shadow-xl" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://via.placeholder.com/600x400/1e293b/a5f3fc?text=رستوران+شرف+الاسلامی" alt="رستوران شرف الاسلامی" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <h3 class="text-2xl font-semibold text-white">رستوران شرف الاسلامی <span class="text-accent-teal">(سنتی)</span></h3>
+                    </div>
+                </div>
+                <!-- Portfolio Item 3 (Garden Restaurant) -->
+                <div class="relative group rounded-lg overflow-hidden shadow-xl" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://via.placeholder.com/600x400/1e293b/a5f3fc?text=باغ+رستوران+گیلاس" alt="باغ رستوران گیلاس" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <h3 class="text-2xl font-semibold text-white">باغ رستوران گیلاس <span class="text-accent-teal">(باغ)</span></h3>
+                    </div>
+                </div>
+                <!-- Portfolio Item 4 (Italian) -->
+                <div class="relative group rounded-lg overflow-hidden shadow-xl" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://via.placeholder.com/600x400/1e293b/a5f3fc?text=رستوران+بلامونیکا" alt="رستوران بلامونیکا" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <h3 class="text-2xl font-semibold text-white">رستوران بلامونیکا <span class="text-accent-teal">(ایتالیایی)</span></h3>
+                    </div>
+                </div>
+                <!-- Portfolio Item 5 (Vegan) -->
+                <div class="relative group rounded-lg overflow-hidden shadow-xl" data-aos="fade-up" data-aos-delay="500">
+                    <img src="https://via.placeholder.com/600x400/1e293b/a5f3fc?text=رستوران+زمین" alt="رستوران زمین" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <h3 class="text-2xl font-semibold text-white">رستوران زمین <span class="text-accent-teal">(گیاهی)</span></h3>
+                    </div>
+                </div>
+                <!-- Portfolio Item 6 (Luxury, with music) -->
+                <div class="relative group rounded-lg overflow-hidden shadow-xl" data-aos="fade-up" data-aos-delay="600">
+                    <img src="https://via.placeholder.com/600x400/1e293b/a5f3fc?text=رستوران+مانسون+لانژ" alt="رستوران مانسون لانژ" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <h3 class="text-2xl font-semibold text-white">مانسون لانژ <span class="text-accent-teal">(لوکس)</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials/Trust - Clean text blocks -->
+    <section id="testimonials" class="py-20 md:py-24 bg-[#181818]">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center text-white" data-aos="fade-up">
+                نظرات مشتریان <span class="text-accent-teal">معتبر ما</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Testimonial 1 -->
+                <div class="p-8 bg-gray-900 rounded-lg shadow-xl border border-gray-800" data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-lg italic text-gray-300 mb-6 leading-relaxed">
+                        "تجربه‌ای بی‌نظیر و فضایی دلنشین. بهترین راهنما برای انتخاب رستوران در تهران بود! هر انتظاری که داشتم برآورده شد."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://via.placeholder.com/50/a5f3fc/111?text=A" alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-accent-teal">
+                        <div>
+                            <p class="font-semibold text-white">آرش نادری</p>
+                            <p class="text-sm text-gray-400">عاشق غذاهای اصیل</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="p-8 bg-gray-900 rounded-lg shadow-xl border border-gray-800" data-aos="fade-up" data-aos-delay="200">
+                    <p class="text-lg italic text-gray-300 mb-6 leading-relaxed">
+                        "کیفیت غذاها و محیط، فراتر از انتظار بود. قطعا دوباره از توصیه‌هایتان برای برنامه‌ریزی یک شب عالی استفاده می‌کنم."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://via.placeholder.com/50/a5f3fc/111?text=S" alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-accent-teal">
+                        <div>
+                            <p class="font-semibold text-white">سارا حسینی</p>
+                            <p class="text-sm text-gray-400">کارشناس گردشگری</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="p-8 bg-gray-900 rounded-lg shadow-xl border border-gray-800" data-aos="fade-up" data-aos-delay="300">
+                    <p class="text-lg italic text-gray-300 mb-6 leading-relaxed">
+                        "از تنوع رستوران‌ها شگفت‌زده شدم. هر آنچه برای یک وعده عالی لازم بود، با کمک این راهنما پیدا کردم. بی‌نظیر!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://via.placeholder.com/50/a5f3fc/111?text=M" alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-accent-teal">
+                        <div>
+                            <p class="font-semibold text-white">مهران کریمی</p>
+                            <p class="text-sm text-gray-400">کامیاب در زندگی</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call to Action - Big, focused section -->
+    <section id="cta-final" class="py-20 md:py-24 bg-gradient-to-br from-dark-theme-bg to-[#181818] text-center">
+        <div class="container mx-auto px-6 max-w-3xl" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white leading-tight">
+                بهترین تجربه غذایی خود را <span class="text-accent-teal">امروز آغاز کنید!</span>
+            </h2>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed">
+                با راهنمای جامع ما، رستوران ایده‌آل خود را در تهران پیدا کنید و لحظاتی فراموش‌نشدنی بسازید.
+                کیفیت، اصالت و طعم بی‌نظیر در انتظار شماست.
+            </p>
+            <a href="#" class="bg-accent-teal text-dark-theme-bg px-10 py-5 rounded-full font-extrabold text-xl md:text-2xl shadow-2xl hover:bg-opacity-80 transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:scale-105">
+                همین حالا کشف کنید
+            </a>
+        </div>
+    </section>
+
+    <!-- Minimalist Footer -->
+    <footer class="bg-[#0c0c0c] py-12 text-center text-gray-500 text-sm">
+        <div class="container mx-auto px-6">
+            <p class="mb-4">
+                &copy; 2023 تهران‌گشت. تمام حقوق محفوظ است.
+            </p>
+            <div class="flex justify-center space-x-reverse space-x-4">
+                <a href="#" class="hover:text-accent-teal transition-colors duration-200">حریم خصوصی</a>
+                <a href="#" class="hover:text-accent-teal transition-colors duration-200">شرایط و ضوابط</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Three.js CDN for 3D graphics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- AOS (Animate On Scroll) JS for graceful scroll animations -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            once: true, // Animations happen only once when scrolling down
+            mirror: false, // Elements do not animate out when scrolling past
+            duration: 800, // Animation duration
+            easing: 'ease-out', // Easing function for a smooth feel
+        });
+
+        // Navbar mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+        function showMobileMenu() {
+            mobileMenuOverlay.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenuOverlay.classList.add('flex', 'opacity-100');
+            }, 10); // Small delay for the opacity transition to kick in
+        }
+
+        function hideMobileMenu() {
+            mobileMenuOverlay.classList.remove('opacity-100');
+            mobileMenuOverlay.classList.add('opacity-0');
+            setTimeout(() => {
+                mobileMenuOverlay.classList.remove('flex');
+                mobileMenuOverlay.classList.add('hidden');
+            }, 300); // Match CSS transition duration
+        }
+
+        mobileMenuButton.addEventListener('click', showMobileMenu);
+        closeMobileMenuButton.addEventListener('click', hideMobileMenu);
+
+        // Smooth scrolling for anchor links within the page
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent default anchor click behavior
+                // Scroll to the target element with smooth behavior
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Three.js Particle System for Hero Section
+        let scene, camera, renderer, particles;
+        let mouseX = 0, mouseY = 0;
+        let windowHalfX = window.innerWidth / 2;
+        let windowHalfY = window.innerHeight / 2;
+
+        function init3D() {
+            const container = document.getElementById('hero-3d-canvas');
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            // Initialize Scene, Camera, and Renderer
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000);
+            camera.position.z = 200; // Position camera slightly away from particles
+
+            renderer = new THREE.WebGLRenderer({ canvas: container, alpha: true, antialias: true });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setClearColor(0x000000, 0); // Transparent background for overlay effect
+
+            // Create Particle System
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const particleCount = 2000; // Number of particles for subtlety
+
+            // Generate random positions for particles
+            for (let i = 0; i < particleCount; i++) {
+                const x = Math.random() * 2000 - 1000;
+                const y = Math.random() * 2000 - 1000;
+                const z = Math.random() * 2000 - 1000;
+                vertices.push(x, y, z);
+            }
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+            // Particle material (monochromatic Neon Teal)
+            const material = new THREE.PointsMaterial({
+                color: 0x00CED1, // Neon Teal
+                size: 2, // Small particle size
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending // Gives a glowing, ethereal effect
+            });
+
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            // Event Listeners for mouse interaction and window resizing
+            document.addEventListener('mousemove', onDocumentMouseMove, false);
+            window.addEventListener('resize', onWindowResize, false);
+
+            animate3D(); // Start the animation loop
+        }
+
+        // Mouse movement handler for subtle interaction
+        function onDocumentMouseMove(event) {
+            mouseX = (event.clientX - windowHalfX) * 0.5; // Scale down sensitivity
+            mouseY = (event.clientY - windowHalfY) * 0.5; // Scale down sensitivity
+        }
+
+        // Window resize handler to maintain aspect ratio and canvas size
+        function onWindowResize() {
+            windowHalfX = window.innerWidth / 2;
+            windowHalfY = window.innerHeight / 2;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Animation loop for particles
+        function animate3D() {
+            requestAnimationFrame(animate3D); // Request next frame
+
+            // Gentle continuous rotation of the particle system
+            particles.rotation.x += 0.0005;
+            particles.rotation.y += 0.0008;
+
+            // Subtle camera movement based on mouse position
+            // Interpolate camera position towards mouseX/mouseY for smoothness
+            camera.position.x += (mouseX - camera.position.x) * 0.0005;
+            camera.position.y += (-mouseY - camera.position.y) * 0.0005;
+            camera.lookAt(scene.position); // Always keep the camera looking at the center
+
+            renderer.render(scene, camera); // Render the scene
+        }
+
+        // Initialize Three.js after the DOM content is fully loaded
+        window.onload = init3D;
+
+    </script>
+</body>
+</html>
+```
