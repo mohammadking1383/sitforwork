@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بهترین رستوران های تهران - سنتی و لوکس | قیمت منو و آدرس</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Vazirmatn Font for Persian Text -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll from Three.js */
+        }
+        #threejs-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background-color: #0d1117; /* Dark background for futuristic feel */
+        }
+        .content-overlay {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(to bottom, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.8) 100%);
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 50;
+            background-color: #5a67d8; /* Indigo-500 */
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .scroll-to-top.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Custom scrollbar for a futuristic look */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a202c; /* Dark track */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #5a67d8; /* Indigo-500 thumb */
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #434190; /* Darker indigo on hover */
+        }
+    </style>
+</head>
+<body class="text-gray-100 bg-gray-900">
+
+    <!-- Three.js Background Container -->
+    <div id="threejs-background"></div>
+
+    <!-- Content Overlay -->
+    <div class="content-overlay min-h-screen">
+
+        <!-- Header -->
+        <header class="relative bg-transparent py-4 shadow-lg">
+            <div class="container mx-auto flex justify-between items-center px-4">
+                <a href="#" class="text-4xl font-extrabold text-indigo-400 hover:text-indigo-300 transition duration-300">
+                    تهران <span class="text-pink-400">رستوران</span>
+                </a>
+                <nav class="hidden md:flex space-x-8 space-x-reverse">
+                    <a href="#hero" class="text-lg text-gray-200 hover:text-indigo-400 transition duration-300">خانه</a>
+                    <a href="#categories" class="text-lg text-gray-200 hover:text-indigo-400 transition duration-300">دسته‌بندی‌ها</a>
+                    <a href="#featured" class="text-lg text-gray-200 hover:text-indigo-400 transition duration-300">ویژه</a>
+                    <a href="#contact" class="text-lg text-gray-200 hover:text-indigo-400 transition duration-300">تماس</a>
+                </nav>
+                <div class="md:hidden">
+                    <button id="menu-button" class="text-gray-200 hover:text-indigo-400 focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-gray-800 shadow-xl py-4 space-y-4 text-center">
+                <a href="#hero" class="block text-lg text-gray-200 hover:text-indigo-400 transition duration-300">خانه</a>
+                <a href="#categories" class="block text-lg text-gray-200 hover:text-indigo-400 transition duration-300">دسته‌بندی‌ها</a>
+                <a href="#featured" class="block text-lg text-gray-200 hover:text-indigo-400 transition duration-300">ویژه</a>
+                <a href="#contact" class="block text-lg text-gray-200 hover:text-indigo-400 transition duration-300">تماس</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="hero" class="relative flex flex-col items-center justify-center min-h-screen text-center py-20 px-4 md:px-8 overflow-hidden">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-indigo-300 mb-6 drop-shadow-lg leading-tight">
+                با <span class="text-pink-400">بهترین رستوران های تهران</span> آشنا شوید.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mb-8 leading-relaxed">
+                سنتی، لوکس، اقتصادی و مدرن - تجربه‌ای فراموش‌نشدنی از طعم و فضا در قلب پایتخت.
+            </p>
+            <p class="text-md md:text-lg text-gray-400 max-w-4xl mb-12">
+                یافتن رستورانی مناسب با محیطی دلنشین و غذاهای باکیفیت می‌تواند چالش‌برانگیز باشد.
+                ما اینجا هستیم تا شما را با برترین رستوران‌های تهران، از سنتی و اصیل تا لوکس و مدرن، آشنا کنیم.
+                سفر گشت‌وگذار شما در تهران با یک وعده غذایی خوشمزه، لذت‌بخش‌تر خواهد شد.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse">
+                <a href="#categories" class="px-8 py-4 bg-indigo-600 text-white text-xl font-bold rounded-full hover:bg-indigo-700 transition duration-300 shadow-lg transform hover:scale-105">
+                    جستجو بر اساس سلیقه شما
+                </a>
+                <a href="#featured" class="px-8 py-4 bg-pink-600 text-white text-xl font-bold rounded-full hover:bg-pink-700 transition duration-300 shadow-lg transform hover:scale-105">
+                    رستوران های ویژه
+                </a>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section id="categories" class="py-20 px-4 md:px-8 bg-gray-900">
+            <div class="container mx-auto">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-center text-indigo-300 mb-16 drop-shadow-lg">
+                    دسته‌بندی‌های رستوران‌ها
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Category Card: Best Affordable Restaurants in Tehran -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4 group-hover:text-indigo-300 transition duration-300">
+                            بهترین رستوران های تهران با قیمت مناسب
+                        </h3>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            کیفیت بالا و قیمت‌های اقتصادی برای تجربه غذایی دلپذیر بدون نگرانی از هزینه.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+                            <li>رستوران شرف الاسلامی تهران</li>
+                            <li>رستوران ایتالیایی بلامونیکا تهران</li>
+                            <li>رستوران قجری، قدیمی ترین رستوران های تهران</li>
+                            <li>رستوران فیلیپر، رستورانی تازه تاسیس در تهران</li>
+                            <li>رستوران هتل قناری سمیه تهران</li>
+                        </ul>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300">
+                            مشاهده همه
+                        </a>
+                    </div>
+
+                    <!-- Category Card: List of Luxury Restaurants in Tehran -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4 group-hover:text-indigo-300 transition duration-300">
+                            لیست رستوران های لاکچری تهران
+                        </h3>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            تجربه فضایی لوکس و غذاهای بی‌نظیر برای لحظاتی خاص و فراموش‌نشدنی.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+                            <li>رستوران دیوان، از لوکس ترین رستوران های تهران</li>
+                            <li>رستوران گردان برج میلاد، یکی از معروف ترین رستوران های تهران</li>
+                            <li>مانسون لانژ، از رستوران های لوکس تهران</li>
+                            <li>رستوران بیستانگو هتل رامتین تهران</li>
+                            <li>رستوران بین‌المللی خاقان تهران</li>
+                        </ul>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300">
+                            مشاهده همه
+                        </a>
+                    </div>
+
+                    <!-- Category Card: Best Garden Restaurants in Tehran -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4 group-hover:text-indigo-300 transition duration-300">
+                            بهترین باغ رستوران های تهران
+                        </h3>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            صرف غذا در محیطی سرسبز و آرام با منوی متنوع و دلپذیر.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+                            <li>رستوران باغ گیلاس</li>
+                            <li>رستوران لبنانی کوبابا</li>
+                            <li>بان کو، رستوران ایتالیایی در تهران</li>
+                            <li>رستوران قصر موج میر داماد تهران</li>
+                            <li>رستوران باغ نور فرحزاد در تهران</li>
+                        </ul>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300">
+                            مشاهده همه
+                        </a>
+                    </div>
+
+                    <!-- Category Card: Best Hotel Restaurants in Tehran -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4 group-hover:text-indigo-300 transition duration-300">
+                            بهترین هتل رستوران های تهران
+                        </h3>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            ترکیبی از اقامت لوکس و تجربه‌های غذایی فوق‌العاده در بهترین هتل‌های شهر.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+                            <li>رستوران اسکای لانژ هتل اسپیناس تهران</li>
+                            <li>رستوران هتل پارسیان استقلال</li>
+                            <li>رستوران هتل پارسیان آزادی</li>
+                            <li>رستوران دلفین هتل هما تهران</li>
+                            <li>رستوران تاج محل تهران</li>
+                        </ul>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300">
+                            مشاهده همه
+                        </a>
+                    </div>
+
+                    <!-- Category Card: 10 Best Traditional Restaurants in Tehran -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4 group-hover:text-indigo-300 transition duration-300">
+                            10 تا از بهترین رستوران های سنتی تهران
+                        </h3>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            سفری به گذشته با طعم اصیل غذاهای ایرانی و فضایی دلنشین و سنتی.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+                            <li>رستوران سنتی عالی قاپو تهران</li>
+                            <li>رستوران سنتی شهربانو تهران</li>
+                            <li>رستوران سنتی باغ فردوس در تهران</li>
+                            <li>سفره‌خانه سنتی باغ صبا</li>
+                            <li>سفره خانه سنتی شب های سرو</li>
+                        </ul>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300">
+                            مشاهده همه
+                        </a>
+                    </div>
+
+                    <!-- Category Card: List of Restaurants in Tehran with Live Music -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4 group-hover:text-indigo-300 transition duration-300">
+                            لیست رستوران های تهران با موسیقی زنده
+                        </h3>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            تجربه غذایی لذت‌بخش در کنار اجرای موسیقی زنده و فضایی پرنشاط.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+                            <li>رستوران ارکیده تهران</li>
+                            <li>رستوران باربد تهران</li>
+                            <li>کاخ رستوران لیدوما، از بهترین رستوران های تهران با موسیقی زنده</li>
+                            <li>رستوران 133، رستوران بین المللی تهران</li>
+                            <li>رستوران آرارات، قدیمی ترین رستوران تهران</li>
+                        </ul>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300">
+                            مشاهده همه
+                        </a>
+                    </div>
+
+                    <!-- Category Card: Best Vegetarian Restaurants in Tehran -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4 group-hover:text-indigo-300 transition duration-300">
+                            بهترین رستوران های گیاهی تهران
+                        </h3>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            بهشت گیاهخواران با منوهای خلاقانه و طعم‌های تازه و سالم.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+                            <li>رستوران زمین تهران</li>
+                            <li>رستوران آناندا تهران</li>
+                            <li>رستوران پیور تهران</li>
+                            <li>رستوران گیاهی تیلیت</li>
+                        </ul>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300">
+                            مشاهده همه
+                        </a>
+                    </div>
+
+                     <!-- Category Card: Most Popular Restaurants in Tehran by Public Opinion -->
+                     <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4 group-hover:text-indigo-300 transition duration-300">
+                            رستوران های معروف تهران از نظر مردم
+                        </h3>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            محبوب‌ترین رستوران‌ها از دیدگاه کاربران و نظرات واقعی مشتریان.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+                            <li>رستوران ایتالیایی سنسو، از شلوغ ترین رستوران های تهران</li>
+                            <li>یاس، از زیبا ترین رستوران های تهران</li>
+                            <li>رستوران اسفندیار</li>
+                            <li>رستوران هتل قناری سمیه تهران</li>
+                            <li>رستوران مسلم (جنوب تهران)</li>
+                        </ul>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300">
+                            مشاهده همه
+                        </a>
+                    </div>
+
+                    <!-- Category Card: Famous Restaurants in Important Areas of Tehran -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 group">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4 group-hover:text-indigo-300 transition duration-300">
+                            رستوران های تهران در مناطق مهم
+                        </h3>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            رستوران‌های منتخب در شمال، شرق، غرب و جنوب تهران برای دسترسی آسان.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+                            <li>لیست رستوران های شمال تهران (مانند SPU، شاندیز جردن)</li>
+                            <li>بهترین رستوران های شرق تهران (مانند عمارت، موبی دیک)</li>
+                            <li>رستوران های غرب تهران (مانند شمرون، پدیده شاندیز)</li>
+                            <li>رستوران های جنوب تهران (مانند تیمچه اکبریان، مسلم)</li>
+                        </ul>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300">
+                            مشاهده همه
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Restaurants Section -->
+        <section id="featured" class="py-20 px-4 md:px-8 bg-gray-900">
+            <div class="container mx-auto">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-center text-indigo-300 mb-16 drop-shadow-lg">
+                    رستوران‌های ویژه و پیشنهادی
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Featured Card 1: Divan Restaurant -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4">رستوران دیوان</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">
+                            یکی از لوکس‌ترین رستوران‌های تهران در محله فرشته. فضایی ایده‌آل برای مراسم خاص و جلسات کاری با منوی متنوع از غذاهای ایرانی، سنتی و فرنگی.
+                        </p>
+                        <p class="text-gray-300 font-semibold mb-2">نوع: لوکس، ایرانی، سنتی، فرنگی</p>
+                        <p class="text-gray-300 font-semibold mb-4">آدرس: مجتمع سام سنتر، طبقه ۸، خیابان فیاضی (فرشته)</p>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300 mt-4">
+                            اطلاعات بیشتر
+                        </a>
+                    </div>
+                    <!-- Featured Card 2: Sharaf El Eslami Restaurant -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4">رستوران شرف الاسلامی</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">
+                            رستورانی سنتی با قدمت در بازار تاریخی تهران. انواع غذاهای اصیل ایرانی نظیر چلو ماهیچه و چلو کباب را با کیفیتی عالی و قیمتی مناسب تجربه کنید.
+                        </p>
+                        <p class="text-gray-300 font-semibold mb-2">نوع: سنتی، ایرانی، قیمت مناسب</p>
+                        <p class="text-gray-300 font-semibold mb-4">آدرس: بازار، به سمت مسجد شاه، داخل حياط مسجد شاه</p>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300 mt-4">
+                            اطلاعات بیشتر
+                        </a>
+                    </div>
+                    <!-- Featured Card 3: Kubaba Lebanese Restaurant -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4">رستوران لبنانی کوبابا</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">
+                            باغ رستورانی لاکچری با طعم اصیل غذاهای عربی و لبنانی. منوی متنوع از خاورمیانه با مواد اولیه تازه و موسیقی زنده در شعبه جردن.
+                        </p>
+                        <p class="text-gray-300 font-semibold mb-2">نوع: باغ رستوران، لبنانی، عربی، موسیقی زنده</p>
+                        <p class="text-gray-300 font-semibold mb-4">آدرس: جردن، خیابان گلخانه، پلاک ۲۵۷</p>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300 mt-4">
+                            اطلاعات بیشتر
+                        </a>
+                    </div>
+                    <!-- Featured Card 4: Senso Italian Restaurant -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4">رستوران ایتالیایی سنسو</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">
+                            یکی از شلوغ‌ترین و محبوب‌ترین رستوران‌های ایتالیایی تهران با تنوع غذایی بالا از پاستا، پیتزا، استیک و غذاهای دریایی.
+                        </p>
+                        <p class="text-gray-300 font-semibold mb-2">نوع: ایتالیایی، پرطرفدار</p>
+                        <p class="text-gray-300 font-semibold mb-4">آدرس: بلوار فردوس شرق، رامین جنوبی، پلاک ۲۱</p>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300 mt-4">
+                            اطلاعات بیشتر
+                        </a>
+                    </div>
+                    <!-- Featured Card 5: Zamin Vegetarian Restaurant -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4">رستوران زمین</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">
+                            بهترین رستوران گیاهی تهران در شهرک غرب. منوی کامل گیاهی شامل پاستا، کباب‌های گیاهی، سوشی و دیزی گیاهی. همراه با فروشگاه محصولات سالم.
+                        </p>
+                        <p class="text-gray-300 font-semibold mb-2">نوع: گیاهی، سالم</p>
+                        <p class="text-gray-300 font-semibold mb-4">آدرس: شهرک غرب، خیابان سیمای ایران، شهرک پردیسان</p>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300 mt-4">
+                            اطلاعات بیشتر
+                        </a>
+                    </div>
+                    <!-- Featured Card 6: Milad Tower Revolving Restaurant -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                        <h3 class="text-3xl font-bold text-pink-400 mb-4">رستوران گردان برج میلاد</h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">
+                            یکی از بزرگترین رستوران‌های گردان جهان با چشم‌انداز بی‌نظیر ۳۶۰ درجه از شهر تهران. منوی متنوع صبحانه، ناهار و شام.
+                        </p>
+                        <p class="text-gray-300 font-semibold mb-2">نوع: لوکس، بین‌المللی، چشم‌انداز</p>
+                        <p class="text-gray-300 font-semibold mb-4">آدرس: برج میلاد، طبقه ششم</p>
+                        <a href="#" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition duration-300 mt-4">
+                            اطلاعات بیشتر
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="py-20 px-4 md:px-8 bg-gray-900">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-indigo-300 mb-8 drop-shadow-lg">
+                    رستوران رویایی خود را پیدا کنید!
+                </h2>
+                <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-10">
+                    با جستجو در جامع‌ترین لیست رستوران‌های تهران، بهترین گزینه را برای هر مناسبتی بیابید.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse">
+                    <input type="text" placeholder="نام رستوران، منطقه یا نوع غذا..." class="px-6 py-3 w-full sm:w-96 bg-gray-700 text-gray-200 border border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300 text-lg">
+                    <button class="px-8 py-3 bg-pink-600 text-white text-xl font-bold rounded-full hover:bg-pink-700 transition duration-300 shadow-lg transform hover:scale-105">
+                        جستجو
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="bg-gray-800 py-12 px-4 md:px-8 text-center border-t border-gray-700">
+            <div class="container mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+                    <div class="text-gray-400 text-lg">
+                        &copy; 2023 تهران رستوران. تمامی حقوق محفوظ است.
+                    </div>
+                    <div class="flex space-x-6 space-x-reverse">
+                        <a href="#" class="text-gray-400 hover:text-indigo-400 transition duration-300 text-lg">درباره ما</a>
+                        <a href="#" class="text-gray-400 hover:text-indigo-400 transition duration-300 text-lg">حریم خصوصی</a>
+                        <a href="mailto:info@respina24.com" class="text-gray-400 hover:text-indigo-400 transition duration-300 text-lg">تماس با ما</a>
+                    </div>
+                    <div class="flex space-x-4 space-x-reverse">
+                        <a href="#" class="text-gray-400 hover:text-indigo-400 transition duration-300">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.776-3.89 1.094 0 2.24.195 2.24.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-indigo-400 transition duration-300">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.717.01 3.654.047 1.004.038 1.794.183 2.417.407.513.18 1.04.39 1.46.728.855.672 1.478 1.294 2.11 2.039.638.759 1.157 1.62 1.458 2.606.321 1.077.464 1.433.504 2.624L22 12.017c0 2.42-2.398 2.73-3.233 2.768-1.004.04-1.353.155-2.614.502-1.096.305-1.787.567-2.45.92-.703.387-1.428.814-2.112 1.51-1.005 1.026-1.528 2.003-1.624 3.208-.094 1.189-.138 2.458-.138 2.656 0 1.258.077 1.517.077 1.63l-.001-.004c0 .03.003.056.003.085 0 .193-.01.275-.01.293-.001.018 0 .034 0 .049.001.009.001.018.001.025v-.001l-.001-.001c-.001-.004 0-.008 0-.012-.001-.004 0-.008 0-.012l.001-.004c.001-.004 0-.008 0-.012v-.001L12.315 2z" clip-rule="evenodd"></path></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-indigo-400 transition duration-300">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.007-.532A8.318 8.318 0 0022 5.92a8.19 8.0 00-.693.18 8.008 8.008 00-1.391-.347A4.904 4.904 0 0019.454 3c-1.124.529-2.26 1.09-3.473 1.346a4.912 4.912 0 00-2.623.765C12.433 5.488 11.69 6.646 11.69 8.024v.29c-3.32-.477-6.57-2.008-9.145-4.437A4.897 4.897 0 003.285 7.77c.48.275.98.5 1.503.682A4.902 4.902 0 013 9.497v.5C3 11.129 4.14 12.36 5.864 12.693c-.357.097-.73.153-1.118.153-.272 0-.534-.028-.79-.064.444 1.353 1.677 2.388 3.09 2.418A9.702 9.702 0 014 16.147c-.525 0-1.03-.03-1.527-.083C2.96 17.518 4.755 18.52 6.742 18.52c8.106 0 12.557-6.705 12.557-12.557 0-.19-.005-.38-.014-.57a8.412 8.412 0 002.053-2.197z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll to Top Button -->
+        <button class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+            </svg>
+        </button>
+
+    </div> <!-- End Content Overlay -->
+
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.158.0/three.min.js"></script>
+    <script>
+        // Three.js Background Script
+        let scene, camera, renderer;
+        let particles;
+        const PARTICLE_COUNT = 1000;
+
+        function initThreeJS() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // alpha: true for transparent background
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('threejs-background').appendChild(renderer.domElement);
+
+            camera.position.z = 5;
+
+            // Particles
+            const geometry = new THREE.BufferGeometry();
+            const positions = [];
+            const colors = [];
+            const color = new THREE.Color();
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                // Position
+                positions.push(
+                    (Math.random() - 0.5) * 20, // x
+                    (Math.random() - 0.5) * 20, // y
+                    (Math.random() - 0.5) * 20  // z
+                );
+                // Color (subtle blue/purple/pink spectrum)
+                color.setHSL(Math.random() * 0.1 + 0.6, 0.7, 0.5 + Math.random() * 0.3); // H, S, L (blue-purple-pink range)
+                colors.push(color.r, color.g, color.b);
+            }
+
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 0.1,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending // Makes particles blend nicely
+            });
+
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            // Simple light to add some depth (optional, but can enhance perception)
+            const ambientLight = new THREE.AmbientLight(0x404040, 2); // soft white light
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(0, 1, 1);
+            scene.add(directionalLight);
+
+            animate();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            particles.rotation.y += 0.0005;
+            particles.rotation.x += 0.0002;
+            particles.position.z += 0.005; // Move particles slowly towards camera
+            if (particles.position.z > 5) particles.position.z = -15; // Loop particles when they pass camera
+
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        window.addEventListener('resize', onWindowResize, false);
+        initThreeJS();
+
+        // Mobile menu toggle
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll to Top logic
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) { // Show button after scrolling 300px
+                scrollToTopButton.classList.add('show');
+            } else {
+                scrollToTopButton.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
