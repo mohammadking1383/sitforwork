@@ -1,0 +1,404 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Stays Tehran - Premium Hotel Booking</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2314B8A6' d='M10 20H8V10h2v10zm6 0h-2V4h2v16zm-4 0h-2V14h2v6z'/%3E%3C/svg%3E" type="image/svg+xml">
+
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- AOS CSS CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Three.js CDN -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #111; /* Dark Grey background */
+            color: #fff; /* White text */
+        }
+        .hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Behind text */
+            pointer-events: none; /* Allows clicks to pass through to elements below if needed */
+        }
+        /* Custom Neon Teal color for consistency */
+        .text-neon-teal {
+            color: #14B8A6; /* Tailwind's default teal-500, a vibrant neon teal */
+        }
+        .bg-neon-teal {
+            background-color: #14B8A6;
+        }
+        .hover\:bg-neon-teal-dark:hover {
+            background-color: #0d9488; /* A darker shade of teal for hover effects */
+        }
+        /* Custom scrollbar for a premium look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #222;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #14B8A6;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0d9488;
+        }
+    </style>
+</head>
+<body class="bg-[#111] text-white overflow-x-hidden">
+
+    <!-- Floating Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#111] bg-opacity-70 backdrop-blur-sm py-4 border-b border-gray-800" data-aos="fade-down" data-aos-duration="1000">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-2 text-2xl font-bold text-white hover:text-neon-teal transition-colors duration-300">
+                <i class="fas fa-hotel text-neon-teal"></i>
+                <span>Elite Stays</span>
+            </a>
+
+            <!-- Nav Links (Hidden on mobile, shown on desktop) -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#services" class="text-white hover:text-neon-teal transition-colors duration-300 font-medium">Services</a>
+                <a href="#portfolio" class="text-white hover:text-neon-teal transition-colors duration-300 font-medium">Portfolio</a>
+                <a href="#testimonials" class="text-white hover:text-neon-teal transition-colors duration-300 font-medium">Testimonials</a>
+            </div>
+
+            <!-- CTA Button -->
+            <div>
+                <a href="#cta" class="bg-neon-teal hover:bg-neon-teal-dark text-white font-semibold py-2 px-6 rounded-full transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+        <!-- Three.js Canvas will be injected here -->
+        <canvas id="heroCanvas" class="hero-canvas"></canvas>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="200">
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-white tracking-tight">
+                Your Gateway to <span class="text-neon-teal">Tehran's Elite Hotels</span>
+            </h1>
+            <p class="text-lg sm:text-xl lg:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto">
+                Discover an exquisite selection of hotels in Tehran, complete with transparent pricing and comprehensive listings to ensure your perfect booking experience.
+            </p>
+            <a href="#cta" class="inline-block bg-neon-teal hover:bg-neon-teal-dark text-white font-bold py-4 px-10 rounded-full text-lg shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out">
+                Explore Hotels
+            </a>
+        </div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section id="services" class="py-24 bg-[#1a1a1a]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-16 text-white" data-aos="fade-up">
+                Unparalleled <span class="text-neon-teal">Excellence</span> in Every Stay
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <!-- Card 1: Curated Selection -->
+                <div class="bg-gray-900 p-10 rounded-xl shadow-xl border border-gray-800 flex flex-col items-center text-center group transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-5xl text-neon-teal mb-6">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Curated Selection</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Handpicked hotels, from luxury boutiques to business suites, all rigorously vetted for quality, comfort, and an unforgettable experience.
+                    </p>
+                </div>
+
+                <!-- Card 2: Transparent Pricing -->
+                <div class="bg-gray-900 p-10 rounded-xl shadow-xl border border-gray-800 flex flex-col items-center text-center group transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-5xl text-neon-teal mb-6">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Transparent Pricing</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Access real-time pricing and exclusive deals directly. No hidden fees, just the best value for your premium stay in Tehran.
+                    </p>
+                </div>
+
+                <!-- Card 3: Effortless Booking -->
+                <div class="bg-gray-900 p-10 rounded-xl shadow-xl border border-gray-800 flex flex-col items-center text-center group transform hover:scale-105 transition-transform duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-5xl text-neon-teal mb-6">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Effortless Booking</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Our intuitive platform makes finding and reserving your ideal Tehran hotel a seamless, secure, and delightfully simple process.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio/Showcase Section -->
+    <section id="portfolio" class="py-24 bg-[#111]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-16 text-white" data-aos="fade-up">
+                Discover <span class="text-neon-teal">Tehran's Finest</span> Accommodations
+            </h2>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1: Luxury Suite -->
+                <div class="relative group bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://via.placeholder.com/600x400/0F0F0F/14B8A6?text=Luxury+Suite" alt="Luxury Suite" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-white mb-2">Grand Executive Suites</h3>
+                        <p class="text-gray-400">Experience unparalleled luxury with breathtaking city views.</p>
+                        <a href="#" class="mt-4 inline-block text-neon-teal hover:text-neon-teal-dark font-medium group-hover:underline transition-colors duration-300">View Details <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Boutique Hotel -->
+                <div class="relative group bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://via.placeholder.com/600x400/0F0F0F/14B8A6?text=Boutique+Hotel" alt="Boutique Hotel" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-white mb-2">Chic Boutique Retreats</h3>
+                        <p class="text-gray-400">Intimate settings and personalized service for a unique stay.</p>
+                        <a href="#" class="mt-4 inline-block text-neon-teal hover:text-neon-teal-dark font-medium group-hover:underline transition-colors duration-300">View Details <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Business Stay -->
+                <div class="relative group bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://via.placeholder.com/600x400/0F0F0F/14B8A6?text=Business+Stay" alt="Business Stay" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-white mb-2">Executive Business Comfort</h3>
+                        <p class="text-gray-400">Seamless connectivity and comfort for the discerning professional.</p>
+                        <a href="#" class="mt-4 inline-block text-neon-teal hover:text-neon-teal-dark font-medium group-hover:underline transition-colors duration-300">View Details <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project Card 4: Family Vacation -->
+                <div class="relative group bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://via.placeholder.com/600x400/0F0F0F/14B8A6?text=Family+Vacation" alt="Family Vacation" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-white mb-2">Family-Friendly Escapes</h3>
+                        <p class="text-gray-400">Spacious accommodations and amenities for memorable family trips.</p>
+                        <a href="#" class="mt-4 inline-block text-neon-teal hover:text-neon-teal-dark font-medium group-hover:underline transition-colors duration-300">View Details <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project Card 5: Historic Charm -->
+                <div class="relative group bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://via.placeholder.com/600x400/0F0F0F/14B8A6?text=Historic+Charm" alt="Historic Charm" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-white mb-2">Historic Charm & Modernity</h3>
+                        <p class="text-gray-400">Immerse yourself in history without compromising on modern luxury.</p>
+                        <a href="#" class="mt-4 inline-block text-neon-teal hover:text-neon-teal-dark font-medium group-hover:underline transition-colors duration-300">View Details <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project Card 6: Spa Resort -->
+                <div class="relative group bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://via.placeholder.com/600x400/0F0F0F/14B8A6?text=Spa+Resort" alt="Spa Resort" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-white mb-2">Tranquil Spa & Wellness</h3>
+                        <p class="text-gray-400">Rejuvenate your senses in serene, world-class spa environments.</p>
+                        <a href="#" class="mt-4 inline-block text-neon-teal hover:text-neon-teal-dark font-medium group-hover:underline transition-colors duration-300">View Details <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-[#1a1a1a]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-16 text-white" data-aos="fade-up">
+                What Our Clients <span class="text-neon-teal">Say</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-900 p-10 rounded-xl shadow-xl border border-gray-800 relative" data-aos="fade-right" data-aos-delay="100">
+                    <i class="fas fa-quote-left text-5xl text-gray-700 absolute top-4 left-4 opacity-50"></i>
+                    <p class="text-gray-300 text-lg italic mb-6 relative z-10">
+                        "Booking my trip to Tehran through Elite Stays was an absolute breeze. The selection of hotels was exceptional, and the transparent pricing truly gave me peace of mind. I found a luxurious hotel at an unbeatable price!"
+                    </p>
+                    <p class="text-white font-semibold text-right">- Dr. Alireza S., Traveler</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-900 p-10 rounded-xl shadow-xl border border-gray-800 relative" data-aos="fade-left" data-aos-delay="200">
+                    <i class="fas fa-quote-left text-5xl text-gray-700 absolute top-4 left-4 opacity-50"></i>
+                    <p class="text-gray-300 text-lg italic mb-6 relative z-10">
+                        "As a business traveler, efficiency is key. Elite Stays delivered a seamless booking experience for my corporate stay in Tehran. The quality of hotels and the ease of navigation on their platform are simply top-tier."
+                    </p>
+                    <p class="text-white font-semibold text-right">- Ms. Fatemeh N., CEO</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call to Action Section -->
+    <section id="cta" class="py-24 bg-[#111]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="zoom-in" data-aos-duration="1000">
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-8 text-white">
+                Ready to Plan Your <span class="text-neon-teal">Perfect Tehran Getaway</span>?
+            </h2>
+            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                Discover your ideal stay from our exclusive collection of Tehran's finest hotels. Secure your reservation with confidence and ease.
+            </p>
+            <a href="#" class="inline-block bg-neon-teal hover:bg-neon-teal-dark text-white font-bold py-5 px-12 rounded-full text-xl shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out">
+                Book Your Tehran Hotel Today
+            </a>
+        </div>
+    </section>
+
+    <!-- Minimalist Footer -->
+    <footer class="bg-gray-950 py-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 Elite Stays. All rights reserved.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="hover:text-neon-teal transition-colors duration-300">Privacy Policy</a>
+                <span class="text-gray-700">|</span>
+                <a href="#" class="hover:text-neon-teal transition-colors duration-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,           // Animation duration
+            easing: 'ease-out-quad', // Easing function
+            once: true,              // Only animate elements once
+            mirror: false            // Do not animate on scroll out/in again
+        });
+
+        // Smooth scrolling for internal navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start' // Scroll to the top of the element
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Three.js Particle System for Hero Background -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('heroCanvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); // alpha for transparent background
+
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            camera.position.z = 5;
+
+            // Create a simple, monochromatic particle system
+            const particleCount = 1000;
+            const particles = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const velocities = new Float32Array(particleCount * 3); // For subtle movement
+
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                // Random position within a conceptual box (e.g., -5 to 5 units in each axis)
+                positions[i] = (Math.random() - 0.5) * 10;
+                positions[i + 1] = (Math.random() - 0.5) * 10;
+                positions[i + 2] = (Math.random() - 0.5) * 10;
+
+                // Subtle initial velocities for continuous, gentle drift
+                velocities[i] = (Math.random() - 0.5) * 0.0001;
+                velocities[i + 1] = (Math.random() - 0.5) * 0.0001;
+                velocities[i + 2] = (Math.random() - 0.5) * 0.0001;
+            }
+
+            particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particles.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3)); // Store velocities
+
+            const particleMaterial = new THREE.PointsMaterial({
+                color: 0xAAAAAA, // Monochromatic light grey
+                size: 0.02,      // Very small particles
+                transparent: true,
+                opacity: 0.7,
+                blending: THREE.AdditiveBlending // Gives a subtle glow effect
+            });
+
+            const particleSystem = new THREE.Points(particles, particleMaterial);
+            scene.add(particleSystem);
+
+            // Mouse interaction for camera movement
+            let mouseX = 0, mouseY = 0;
+            const windowHalfX = window.innerWidth / 2;
+            const windowHalfY = window.innerHeight / 2;
+
+            document.addEventListener('mousemove', (event) => {
+                // Normalize mouse position to -1 to 1, then scale down for subtlety
+                mouseX = (event.clientX - windowHalfX) * 0.0001;
+                mouseY = (event.clientY - windowHalfY) * 0.0001;
+            });
+
+            // Animation loop
+            const animate = () => {
+                requestAnimationFrame(animate);
+
+                // Update particle positions based on their velocities
+                const currentPositions = particleSystem.geometry.attributes.position.array;
+                const currentVelocities = particleSystem.geometry.attributes.velocity.array;
+
+                for (let i = 0; i < particleCount * 3; i += 3) {
+                    currentPositions[i] += currentVelocities[i];
+                    currentPositions[i + 1] += currentVelocities[i + 1];
+                    currentPositions[i + 2] += currentVelocities[i + 2];
+
+                    // Wrap particles around to maintain a continuous field
+                    if (Math.abs(currentPositions[i]) > 5) currentPositions[i] *= -1;
+                    if (Math.abs(currentPositions[i + 1]) > 5) currentPositions[i + 1] *= -1;
+                    if (Math.abs(currentPositions[i + 2]) > 5) currentPositions[i + 2] *= -1;
+                }
+                particleSystem.geometry.attributes.position.needsUpdate = true; // Tell Three.js to update buffer
+
+                // Gentle camera rotation based on mouse position
+                camera.position.x += (mouseX - camera.position.x) * 0.05;
+                camera.position.y += (-mouseY - camera.position.y) * 0.05;
+                camera.lookAt(scene.position); // Always look at the center of the scene
+
+                renderer.render(scene, camera);
+            };
+            animate();
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(window.devicePixelRatio); // Maintain sharpness on high-DPI screens
+            });
+        });
+    </script>
+</body>
+</html>
+```
